@@ -60,10 +60,14 @@ int SetupProcess(GameState *gameState, SDL_Window **window, SDL_Renderer **rende
     gameState->RunGame = 0;
     gameState->LastFrameTime = 0;
     gameState->DeltaTime = 0.0f;
-    gameState->PlayerBall.X = 20.0f;
-    gameState->PlayerBall.Y = 20.0f;
+    gameState->PlayerBall.X = 200.0f;
+    gameState->PlayerBall.Y = 300.0f;
     gameState->PlayerBall.Width = 15.0f;
     gameState->PlayerBall.Height = 15.0f;
+
+    for (int i = 0; i < MAX_BULLETS_AMOUNT; i++) {
+        gameState->Bullets[i].Active = FALSE;
+    }
 
     return InitializeSDL(window, renderer);
 }

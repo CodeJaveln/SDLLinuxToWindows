@@ -20,9 +20,30 @@ static void ProcessInput(GameState *gameState) {
 }
 
 static void FireBullet(GameState *gameState) {
-    for (int i = 0; i < BULLETS_AMOUNT; i++) {
+    for (int i = 0; i < MAX_BULLETS_AMOUNT; i++) {
         if (!gameState->Bullets[i].Active) {
+            Bullet newBullet = {
+                gameState->PlayerBall.X,
+                gameState->PlayerBall.Y,
+                TRUE
+            };
+            gameState->Bullets[i] = newBullet;
+            break;
         }
+    }
+}
+
+static void UpdateBullets(GameState *gameState) {
+    for (int i = 0; i < MAX_BULLETS_AMOUNT; i++) {
+        if (!gameState->Bullets[i].Active){
+            continue;
+        }
+
+        if (gameState->Bullets[i].Y < 0) {
+            gameState->Bullets[i].Active = FALSE;
+        }
+
+        gameState->Bullets[i].Y -= BULLET_SPEED * gameState->DeltaTime;
     }
 }
 
@@ -49,8 +70,10 @@ void Update(GameState *gameState) {
         gameState->PlayerBall.X += 70.0f * gameState->DeltaTime;
     }
     if (gameState->KeyState[SDL_SCANCODE_SPACE]) {
-
+        FireBullet(gameState);
     }
+
+    UpdateBullets(gameState);
 
     gameState->LastFrameTime = SDL_GetTicks();
 }

@@ -10,7 +10,12 @@
 
 #define NUM_KEYS 256
 
-#define BULLETS_AMOUNT 255
+#define MAX_BULLETS_AMOUNT 255
+
+#define BULLET_WIDTH 5
+#define BULLET_HEIGHT 5
+
+#define BULLET_SPEED 80
 
 #define FPS 30
 #define FRAME_TARGET_TIME (1000/FPS)

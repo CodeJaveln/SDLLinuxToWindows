@@ -22,7 +22,7 @@ typedef struct {
     float DeltaTime;
     int KeyState[NUM_KEYS];
     Ball PlayerBall;
-    Bullet Bullets[BULLETS_AMOUNT];
+    Bullet Bullets[MAX_BULLETS_AMOUNT];
 } GameState;
 
 #endif
